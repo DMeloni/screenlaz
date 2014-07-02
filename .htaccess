@@ -10,9 +10,9 @@ AddDefaultCharset UTF-8
 RewriteEngine on
 
 
-RewriteRule   ^([0-9]+)  /channel.php?channel=$1  [L]
+RewriteRule   ^([0-9]+)  channel.php?channel=$1  [L]
 
-RewriteRule   ^category/([a-z]+)  /channels.php?category=$1  [L,R]
+RewriteRule   ^category/([a-z]+)  channels.php?category=$1  [L,R]
 
 <IfModule mod_expires.c>
 	# Enable expirations
