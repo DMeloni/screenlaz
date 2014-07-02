@@ -1,0 +1,54 @@
+SetEnv PHP_VER 5_TEST
+SetEnv REGISTER_GLOBALS 0
+
+SetEnv allow_url_fopen On
+SetEnv SESSION_USE_TRANS_SID 0
+SetEnv DISPLAY_ERRORS 0
+
+AddDefaultCharset UTF-8
+
+RewriteEngine on
+
+
+RewriteRule   ^([0-9]+)  /channel.php?channel=$1  [L]
+
+RewriteRule   ^category/([a-z]+)  /channels.php?category=$1  [L,R]
+
+<IfModule mod_expires.c>
+	# Enable expirations
+	ExpiresActive On 
+	# Default directive
+	ExpiresDefault "access plus 5 minutes"
+	# My favicon
+	ExpiresByType image/x-icon "access plus 1 year"
+	# Images
+	ExpiresByType image/gif "access plus 1 month"
+	ExpiresByType image/png "access plus 1 month"
+	ExpiresByType image/jpg "access plus 1 month"
+	ExpiresByType image/jpeg "access plus 1 month"
+	ExpiresByType image/x-icon "access plus 1 month"
+	ExpiresByType image/svg+xml "access plus 1 month"
+	ExpiresByType image/svg+xml "access plus 1 month"
+	# CSS
+	ExpiresByType text/css "access 1 month"
+	# Javascript
+	ExpiresByType application/javascript "access plus 1 year"
+	
+	<FilesMatch "\.(ttf)$">
+		ExpiresDefault "access plus 1 month"
+	</FilesMatch>	
+</IfModule>
+
+# compress certain file types by extension:
+<Files *.css>
+	SetOutputFilter DEFLATE
+</Files>
+<Files *.ico>
+	SetOutputFilter DEFLATE
+</Files>
+<Files *.svg>
+	SetOutputFilter DEFLATE
+</Files>
+<Files *.ttf>
+	SetOutputFilter DEFLATE
+</Files>
